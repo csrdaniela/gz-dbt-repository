@@ -1,11 +1,39 @@
 version: 2
 
 sources:
-  - name: gz_raw_data
+  - name: raw
+    schema: gz_raw_data
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: gwz sales
+        
+        tests:
+          - unique:
+              column_name: "(orders_id, '-', pdt_id)"
       - name: product
         identifier: raw_gz_product
+        description: gwz products and purchase price
+        columns:
+          - name: products_id
+            description: product id
+            tests:
+              - not_null
+              - unique
+          - name: purchase_price
+            description: price per product id
       - name: ship
         identifier: raw_gz_ship
+        description: shipping fee, log and costs per order
+        columns:
+          - name: orders_id
+            description: id per order
+            tests:
+              - not_null
+              - unique
+          - name: shipping_fee
+            description: shipping fee per order
+          - name: logCost
+            description: logistics cost per order
+          - name: ship_cost
+            description: shipping cost
