@@ -37,6 +37,78 @@ sources:
             description: logistics cost per order
           - name: ship_cost
             description: shipping cost
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: adwords mktg campaign
+        columns:
+          - name: date_date
+            description: date of the ad
+          - name: paid_source
+            description: source of ad
+          - name: campaign_key
+            description: id of campaign
+          - name: camPGN_name
+            description: name of campaign      
+          - name: ads_cost
+            description: cost of ad
+          - name: impression
+            description: nb of impressions of ad
+          - name: click
+            description: nb of clicks of ad
+      - name: bing
+        identifier: raw_gz_bing
+        description: bing mktg campaign
+        columns:
+          - name: date_date
+            description: date of the ad
+          - name: paid_source
+            description: source of ad
+          - name: campaign_key
+            description: id of campaign
+          - name: camPGN_name
+            description: name of campaign      
+          - name: ads_cost
+            description: cost of ad
+          - name: impression
+            description: nb of impressions of ad
+          - name: click
+            description: nb of clicks of ad      
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: criteo mktg campaign
+        columns:
+          - name: date_date
+            description: date of the ad
+          - name: paid_source
+            description: source of ad
+          - name: campaign_key
+            description: id of campaign
+          - name: camPGN_name
+            description: name of campaign      
+          - name: ads_cost
+            description: cost of ad
+          - name: impression
+            description: nb of impressions of ad
+          - name: click
+            description: nb of clicks of ad        
+      - name: facebook 
+        identifier: raw_gz_facebook
+        description: facebook mktg campaign
+        columns:
+          - name: date_date
+            description: date of the ad
+          - name: paid_source
+            description: source of ad
+          - name: campaign_key
+            description: id of campaign
+          - name: camPGN_name
+            description: name of campaign      
+          - name: ads_cost
+            description: cost of ad
+          - name: impression
+            description: nb of impressions of ad
+          - name: click
+            description: nb of clicks of ad        
 models:
   - name: int_orders_margin
     description: margin calculation per order
