@@ -47,5 +47,5 @@ models:
     marts: 
     # applies to all marts
       +materialized: table
-      supply_chain:
-        +schema: supply_chain
+      finance:
+        +schema: finance
