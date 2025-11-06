@@ -160,4 +160,32 @@ models:
         tests:
           - unique
           - not_null
-          
+  - name: int_campaigns
+    description: union of four ads campaigns
+    columns:
+      - name: paid_source
+        description: name of source of ad
+        tests:
+          - not_null
+      - name: campaign_key
+      - name: campaign_name
+      - name: ads_cost
+      - name: impression
+      - name: click
+    tests:
+      - unique:
+          column_name: "(date_date || '-' || campaign_key)"
+  - name: int_campaigns_day
+    description: aggreated by day
+    columns:
+      - name: date_date
+        description: date of the ad
+        tests:
+          - not_null
+          - unique
+  - name: finance_campaign_day
+    description: finance data with the ads margin
+    columns: 
+      - name: date_date
+        tests:
+          - not_null
