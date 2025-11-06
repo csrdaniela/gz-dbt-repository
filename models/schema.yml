@@ -183,9 +183,16 @@ models:
         tests:
           - not_null
           - unique
-  - name: finance_campaign_day
+  - name: finance_campaigns_day
     description: finance data with the ads margin
     columns: 
       - name: date_date
         tests:
           - not_null
+  - name: finance_campaigns_month
+    description: finance data with the ads margin per month
+    columns: 
+      - name: date_month
+        tests:
+          - not_null
+          - unique        
