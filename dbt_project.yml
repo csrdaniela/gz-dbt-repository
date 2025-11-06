@@ -40,3 +40,12 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
+    staging:
+      +materilized: view
+    intermediate: 
+      +materialized: view
+    marts: 
+    # applies to all marts
+      +materialized: table
+      finance:
+        +schema: finance

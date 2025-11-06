@@ -1,0 +1,91 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: gwz sales
+        
+        tests:
+          - unique:
+              column_name: "(orders_id, '-', pdt_id)"
+      - name: product
+        identifier: raw_gz_product
+        description: gwz products and purchase price
+        columns:
+          - name: products_id
+            description: product id
+            tests:
+              - not_null
+              - unique
+          - name: purchase_price
+            description: price per product id
+      - name: ship
+        identifier: raw_gz_ship
+        description: shipping fee, log and costs per order
+        columns:
+          - name: orders_id
+            description: id per order
+            tests:
+              - not_null
+              - unique
+          - name: shipping_fee
+            description: shipping fee per order
+          - name: logCost
+            description: logistics cost per order
+          - name: ship_cost
+            description: shipping cost
+models:
+  - name: int_orders_margin
+    description: margin calculation per order
+    columns:
+      - name: orders_id
+        description: orders key
+        tests:
+          - unique
+          - not_null
+  - name: int_orders_operational
+    description: margin operational per order
+    columns:
+      - name: orders_id
+        description: orders key
+        tests:
+          - not_null
+          - unique
+  - name: int_sales_margin
+    description: margin per order
+    columns:
+      - name: orders_id
+        description: orders key
+        tests:
+          - not_null  
+      - name: date_date
+        description: date of the order
+        tests:
+          - not_null
+      - name: products_id
+        description: product key
+        tests:
+          - not_null
+      - name: margin
+        description: margin = revenue - purchase cost
+        tests:
+          - not_null
+      - name: quantity
+        description: items in order
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || products_id)"
+  - name: finance_days
+    description: finance metrics
+    columns:
+      - name: date_date
+        description: date of the transactions
+        tests:
+          - unique
+          - not_null
+          
