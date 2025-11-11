@@ -1,16 +1,19 @@
 select
-  date_date
-  , orders_id
-  , products_id
-  , revenue
-  , quantity
-  , purchase_cost
-  , purchase_cost * quantity as total_purchase_cost
-  , round( revenue - (purchase_cost * quantity),2) as margin
-  , {{margin_percent ( 'revenue', 'purchase_cost' ) }} as margin_percent
+  s.date_date
+  , s.orders_id
+  , s.products_id
+  , s.revenue
+  , s.quantity
+  , p.purchase_cost
+  , p.purchase_cost * s.quantity as total_purchase_cost
+  , round( s.revenue - (p.purchase_cost * s.quantity),2) as margin
+  , {{margin_percent('s.revenue', 's.quantity * p.purchase_cost' )}}
 from 
-  {{ ref('stg_gz_raw_data__sales') }}
+  {{ ref('stg_gz_raw_data__sales') }} s
 join 
-  {{ ref('stg_gz_raw_data__product') }}
+  {{ ref('stg_gz_raw_data__product') }} p
 using
   (products_id)
+
+
+
